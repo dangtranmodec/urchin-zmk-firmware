@@ -7,6 +7,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
 #include "keymap_italian.h"
 
 // Layer definitions
@@ -117,6 +118,21 @@
             bindings = <&kp LS(LG(SPACE))>;
             key-positions = <17 18>;
         };
+
+        reset_left {
+            bindings = <&sys_reset>;
+            key-positions = <4 14 24>;
+        };
+
+        right_reset {
+            bindings = <&sys_reset>;
+            key-positions = <5 15 25>;
+        };
+
+        mouse_layer {
+            bindings = <&mo 4>;
+            key-positions = <30 31>;
+        };
     };
 
     keymap {
@@ -163,22 +179,22 @@
         fnc_layer {
             label = "FRow";
             bindings = <
-&kp F1    &kp F2    &kp F3      &kp F4     &bt BT_SEL 0  &bt BT_SEL 3  &kp F7   &kp F8           &kp F9  &kp F10
-&sk LALT  &sk LGUI  &sk LSHIFT  &sk LCTRL  &bt BT_SEL 1  &bt BT_SEL 4  &kp F12  &kp PRINTSCREEN  &trans  &trans
-&none     &none     &none       &none      &bt BT_SEL 2  &bt BT_CLR    &none    &none            &none   &none
-                                &none      &none         &none         &none
+&none  &none  &none  &none  &bt BT_SEL 0  &bt BT_SEL 3  &kp LS(C_AC_DESKTOP_SHOW_ALL_APPLICATIONS)  &kp C_BRI_DEC  &kp C_BRIGHTNESS_INC  &none
+&none  &none  &none  &none  &bt BT_SEL 1  &bt BT_SEL 4  &kp C_PP                                    &kp C_RW       &kp C_FAST_FORWARD    &trans
+&none  &none  &none  &none  &bt BT_SEL 2  &bt BT_CLR    &kp C_MUTE                                  &kp C_VOL_DN   &kp C_VOLUME_UP       &none
+                     &none  &none         &none         &none
             >;
         };
 
         // Low frequency symbols.
 
-        symbols_2_layer {
+        Mouse {
             label = "Sym.2";
             bindings = <
-&kp IT_CARET  &kp IT_UNDER  &kp IT_PND   &kp IT_EUR   &kp IT_HASH  &none  &none  &none  &none  &none
-&kp IT_BKTK   &kp IT_TILDE  &kp IT_BSLH  &kp IT_PIPE  &kp IT_AND   &none  &none  &none  &none  &none
-&none         &none         &kp IT_SECT  &kp IT_CCED  &kp IT_DEG   &none  &none  &none  &none  &none
-                                         &none        &none        &none  &none
+&kp IT_CARET  &mkp RCLK       &mmv MOVE_UP    &mkp LCLK        &kp IT_HASH  &none  &none  &none  &none  &none
+&kp IT_BKTK   &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &kp IT_AND   &none  &none  &none  &none  &none
+&none         &none           &msc SCRL_DOWN  &msc SCRL_UP     &kp IT_DEG   &none  &none  &none  &none  &none
+                                              &none            &none        &none  &none
             >;
         };
 
